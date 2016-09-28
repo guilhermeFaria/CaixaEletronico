@@ -28,4 +28,10 @@ public class ValorTransferidoEvento extends EventoTransacional {
     public double atualizarSaldo(final double saldo) {
         return saldo + getValor();
     }
+    
+    @Override
+    public ContextoTransferencia getSource() {
+    	
+       	return (ContextoTransferencia) super.getSource();
+    }
 }

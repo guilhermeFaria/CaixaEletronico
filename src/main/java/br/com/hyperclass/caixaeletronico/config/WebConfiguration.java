@@ -22,9 +22,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-import org.springframework.web.servlet.view.xml.MappingJackson2XmlView;
 
-import br.com.hyperclass.caixaeletronico.restapi.serializers.Teste;
 
 /**
  * A classe WebConfiguration contem as configurações do Spring referente a camada
@@ -68,7 +66,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
         final ContentNegotiatingViewResolver contentViewResolver = new ContentNegotiatingViewResolver();
         contentViewResolver.setContentNegotiationManager(contentNegotiationManager.getObject());
-        contentViewResolver.setDefaultViews(Arrays.<View> asList(defaultJsonView, new MappingJackson2XmlView()));
+        contentViewResolver.setDefaultViews(Arrays.<View> asList(defaultJsonView, new MappingJackson2JsonView()));
 
         return contentViewResolver;
     }
@@ -76,7 +74,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     private Map<String, MediaType> getMediaTypes() {
         final Map<String, MediaType> mediaTypes = new HashMap<>();
         mediaTypes.put("json", MediaType.APPLICATION_JSON);
-        mediaTypes.put("xml", MediaType.APPLICATION_XML);
+        //mediaTypes.put("xml", MediaType.APPLICATION_XML);
         return mediaTypes;
     }
 

@@ -2,12 +2,13 @@ package br.com.hyperclass.caixaeletronico.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.WebApplicationInitializer;
+/*
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+*/
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class CaixaEletronicoWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer {
@@ -24,10 +25,10 @@ public class CaixaEletronicoWebApplicationInitializer extends AbstractAnnotation
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/"};
+		return new String[] {"/*"};
 	}
 	
-	@Override
+	/*@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
 		webApplicationContext.setConfigLocation("br.com.hyperclass.caixaeletronico.config");
@@ -36,6 +37,12 @@ public class CaixaEletronicoWebApplicationInitializer extends AbstractAnnotation
 		appServlet.setLoadOnStartup(1);
 		appServlet.addMapping("/*");
 
-		servletContext.addListener(new ContextLoaderListener(webApplicationContext));	
-	}
+		servletContext.addListener(new ContextLoaderListener(webApplicationContext));
+	}*/
+	
+	@Override
+    public void onStartup(final ServletContext context) throws ServletException {
+        super.onStartup(context);
+        //context.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class).addMappingForUrlPatterns(null, false, "/*");
+    }
 }
