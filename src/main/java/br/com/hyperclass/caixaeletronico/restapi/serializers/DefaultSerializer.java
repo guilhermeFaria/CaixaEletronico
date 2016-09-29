@@ -1,11 +1,10 @@
-package br.com.hyperclass.caixaeletronico.restapi.deserializers;
+package br.com.hyperclass.caixaeletronico.restapi.serializers;
 
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
-import br.com.hyperclass.caixaeletronico.restapi.Serializer;
 
 public class DefaultSerializer implements Serializer {
 

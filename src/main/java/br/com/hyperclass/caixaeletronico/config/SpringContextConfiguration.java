@@ -14,8 +14,8 @@ import br.com.hyperclass.caixaeletronico.domain.caixa.Nota;
 import br.com.hyperclass.caixaeletronico.domain.caixa.ValorNota;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.ContaCorrente;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.TipoEvento;
-import br.com.hyperclass.caixaeletronico.restapi.Serializer;
-import br.com.hyperclass.caixaeletronico.restapi.deserializers.DefaultSerializer;
+import br.com.hyperclass.caixaeletronico.restapi.serializers.DefaultSerializer;
+import br.com.hyperclass.caixaeletronico.restapi.serializers.Serializer;
 import br.com.hyperclass.caixaeletronico.restapi.serializers.TransferenciaSerializer;
 
 @Configuration

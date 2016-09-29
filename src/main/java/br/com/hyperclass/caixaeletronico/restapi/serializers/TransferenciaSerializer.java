@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonGenerator;
 
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
-import br.com.hyperclass.caixaeletronico.restapi.Serializer;
 
 public class TransferenciaSerializer implements Serializer {
 

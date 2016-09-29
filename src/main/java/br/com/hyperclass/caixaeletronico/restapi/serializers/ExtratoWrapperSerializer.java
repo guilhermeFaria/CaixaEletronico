@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.TipoEvento;
-import br.com.hyperclass.caixaeletronico.restapi.Serializer;
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ExtratoWrapper;
 
 public class ExtratoWrapperSerializer extends JsonSerializer<ExtratoWrapper>{
