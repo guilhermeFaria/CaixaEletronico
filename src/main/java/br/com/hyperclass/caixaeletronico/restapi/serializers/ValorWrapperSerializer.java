@@ -8,15 +8,19 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ValorWrapper;
-
+/**
+ * 
+ * @author Guilherme Faria
+ *
+ * @version 1.0.0
+ */
 public class ValorWrapperSerializer extends JsonSerializer<ValorWrapper>{
 
 	@Override
-	public void serialize(ValorWrapper arg0, JsonGenerator arg1, SerializerProvider arg2)
+	public void serialize(final ValorWrapper valorWrapper, final JsonGenerator generator, final SerializerProvider serializerProvider)
 			throws IOException, JsonProcessingException {
-		arg1.writeStartObject();
-		arg1.writeNumberField("valor", arg0.value());
-		arg1.writeEndObject();	
+		generator.writeStartObject();
+		generator.writeNumberField("valor", valorWrapper.value());
+		generator.writeEndObject();	
 	}
-
 }

@@ -9,18 +9,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
 import br.com.hyperclass.caixaeletronico.restapi.serializers.ExtratoWrapperSerializer;
 
-@JsonSerialize(using= ExtratoWrapperSerializer.class)
+@JsonSerialize(using = ExtratoWrapperSerializer.class)
 public class ExtratoWrapper {
 	
-	private List<EventoTransacional> eventos = new ArrayList<EventoTransacional>();
+	private final List<EventoTransacional> eventos = new ArrayList<EventoTransacional>();
 	
-	public ExtratoWrapper(List<EventoTransacional> evento) {
+	public ExtratoWrapper(final List<EventoTransacional> evento) {
 		this.eventos.addAll(evento);
 	}
 	
-	public List<EventoTransacional> eventos() {
+	public final List<EventoTransacional> eventos() {
 		return Collections.unmodifiableList(eventos);
 	}
-	
-	
 }

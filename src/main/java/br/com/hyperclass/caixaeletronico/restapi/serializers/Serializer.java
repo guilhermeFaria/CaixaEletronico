@@ -8,6 +8,5 @@ import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTran
 
 public interface Serializer {
 	
-	public abstract void serializer(EventoTransacional evento, JsonGenerator generator) throws IOException;
-	
+	public void serialize(EventoTransacional evento, JsonGenerator generator) throws IOException;
 }

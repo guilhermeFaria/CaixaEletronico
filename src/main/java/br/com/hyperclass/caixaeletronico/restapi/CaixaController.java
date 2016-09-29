@@ -3,6 +3,7 @@ package br.com.hyperclass.caixaeletronico.restapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,25 +25,26 @@ public class CaixaController {
 	private CaixaEletronico caixa;
 	
 	@RequestMapping(value = "/", method=RequestMethod.GET)
-	public String welcome() {
-		return "Bem vindo ao Caixa Eletronico v1.0";
+	public ResponseEntity<Object> welcome() {
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value= "{conta}/saldo", method=RequestMethod.GET)
-	public ValorWrapper saldo(@PathVariable String conta) throws CaixaEletronicoException {
+	@RequestMapping(value= "/{conta}/saldo", method=RequestMethod.GET)
+	public ValorWrapper saldo(@PathVariable("conta") final String conta) throws CaixaEletronicoException {
 		return new ValorWrapper(caixa.saldo(conta));
 	}
 	
-	@RequestMapping(value="{conta}/saque", method = RequestMethod.POST)
-	public ResponseEntity saque(@PathVariable String conta, @RequestBody double valor) throws CaixaEletronicoException {
-		caixa.sacar(conta, valor);
-		return new ResponseEntity( HttpStatus.OK);
+	@RequestMapping(value="/{conta}/saque", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public void saque(@PathVariable("conta") final String conta, @RequestBody final ValorWrapper valorWrapper) throws CaixaEletronicoException {
+		System.out.println("Chegouuuu");
+		caixa.sacar(conta, valorWrapper.value());
+		
 	}
 	
 	@PostMapping(value="{conta}/deposito")
-	public ResponseEntity deposito(@PathVariable String conta, @RequestBody double valor) throws CaixaEletronicoException {
-		caixa.depositar(conta, valor);
-		return new ResponseEntity(HttpStatus.OK);
+	public ResponseEntity<ValorWrapper> deposito(@PathVariable("conta") final String conta, @RequestBody final ValorWrapper valorWrapper) throws CaixaEletronicoException {
+		caixa.depositar(conta, valorWrapper.value());
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="{contaOrigem}/transferencia/{contaDestino}/{valor}", method=RequestMethod.POST)

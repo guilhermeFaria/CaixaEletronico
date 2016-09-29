@@ -71,7 +71,7 @@ public class ContaCorrente {
         contaDestino.receberTransferencia(this, valor);
     }
 
-    public void receberTransferencia(final ContaCorrente contaOrigem, final double valor) {
+    private void receberTransferencia(final ContaCorrente contaOrigem, final double valor) {
         historico.add(new ValorTransferidoEvento(contaOrigem, valor, TipoEvento.TRANSFERENCIA_ENTRADA));
     }
 

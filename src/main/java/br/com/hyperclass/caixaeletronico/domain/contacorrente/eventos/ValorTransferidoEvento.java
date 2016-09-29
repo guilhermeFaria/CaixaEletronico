@@ -29,9 +29,4 @@ public class ValorTransferidoEvento extends EventoTransacional {
         return saldo + getValor();
     }
     
-    @Override
-    public ContextoTransferencia getSource() {
-    	
-       	return (ContextoTransferencia) super.getSource();
-    }
 }

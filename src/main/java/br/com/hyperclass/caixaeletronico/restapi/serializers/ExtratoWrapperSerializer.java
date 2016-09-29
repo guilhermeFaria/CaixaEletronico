@@ -1,12 +1,12 @@
 package br.com.hyperclass.caixaeletronico.restapi.serializers;
 
 import java.io.IOException;
+import java.util.EnumMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
@@ -14,26 +14,32 @@ import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTran
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.TipoEvento;
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ExtratoWrapper;
 
-public class ExtratoWrapperSerializer extends JsonSerializer<ExtratoWrapper>{
-	private final Map<TipoEvento, Serializer> eventosSerializer;
-	
-	@Autowired
-	public ExtratoWrapperSerializer(Map<TipoEvento, Serializer> eventoSerializer) {
-		super();
-		this.eventosSerializer = eventoSerializer;
-	}
-	
+/**
+ * 
+ * @author Guilherme Faria
+ *
+ * @version 1.0.0 28/09/2016
+ */
+
+public class ExtratoWrapperSerializer extends JsonSerializer<ExtratoWrapper> {
+
+	private final Map<TipoEvento, Serializer> eventosSerializer = new EnumMap<>(TipoEvento.class);
+
 	@Override
-	public void serialize(ExtratoWrapper extratoWrapper, JsonGenerator generator, SerializerProvider arg2)
-			throws IOException, JsonProcessingException {
+	public void serialize(final ExtratoWrapper extratoWrapper, final JsonGenerator generator,
+			final SerializerProvider provider) throws IOException {
 		generator.writeStartArray();
-		
-		for(final EventoTransacional eventos: extratoWrapper.eventos()) {			
-			Serializer s = eventosSerializer.get(eventos.getTipo());
-			s.serializer(eventos, generator);
+
+		for (final EventoTransacional eventos : extratoWrapper.eventos()) {
+			final Serializer serializer = eventosSerializer.get(eventos.getTipo());
+			serializer.serialize(eventos, generator);
 		}
 		generator.writeEndArray();
-		
+
 	}
 
+	@Resource
+	public void setEventosSerializer(final Map<TipoEvento, Serializer> eventosSerializer) {
+		this.eventosSerializer.putAll(eventosSerializer);
+	}
 }
