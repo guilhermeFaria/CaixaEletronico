@@ -10,9 +10,10 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 public class ValorWrapperDeserializer extends JsonDeserializer<Object>{
 
 	@Override
-	public Object deserialize(JsonParser arg0, DeserializationContext arg1)
+	public Object deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
 			throws IOException, JsonProcessingException {
-		// TODO Auto-generated method stub
+		jsonParser.getCodec();
+		
 		return null;
 	}
 
