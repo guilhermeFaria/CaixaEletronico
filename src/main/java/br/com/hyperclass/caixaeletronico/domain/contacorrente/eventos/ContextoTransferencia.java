@@ -30,4 +30,8 @@ public class ContextoTransferencia extends ContextoEventoTransacional {
     public ContaCorrente getConta() {
         return conta;
     }
+    
+    public String getNumeroConta() {
+    	return conta.getNumeroConta();
+    }
 }

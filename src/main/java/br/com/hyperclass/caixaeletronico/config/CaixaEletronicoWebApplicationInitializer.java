@@ -7,7 +7,14 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 */
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
+/**
+ * A classe <code>WebApplicationInitializer</code> representa a inicialização
+ * do contexto do Spring na aplicação.
+ * 
+ * @author Guilherme Faria
+ *
+ * @version 1.0.0 26/09/2016
+ */
 public class CaixaEletronicoWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer {
 
 	@Override

@@ -13,11 +13,11 @@ import java.util.List;
 
 import br.com.hyperclass.caixaeletronico.domain.caixa.CaixaEletronicoException;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
-import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.TipoEvento;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.ValorDepositadoEvento;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.ValorInicialDisponibilizadoEvento;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.ValorSacadoEvento;
-import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.ValorTransferidoEvento;
+import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.ValorTransferenciaEntradaEvento;
+import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.ValorTransferenciaSaidaEvento;
 
 /**
  * A classe <code>ContaCorrente</code> representa uma conta corrente. Não há um
@@ -67,12 +67,12 @@ public class ContaCorrente {
         if (!temSaldo(valor)) {
             throw new SaldoInsuficienteException(saldo());
         }
-        historico.add(new ValorTransferidoEvento(contaDestino, valor, TipoEvento.TRANSFERENCIA_SAIDA));
+        historico.add(new ValorTransferenciaSaidaEvento(contaDestino, valor));
         contaDestino.receberTransferencia(this, valor);
     }
 
     private void receberTransferencia(final ContaCorrente contaOrigem, final double valor) {
-        historico.add(new ValorTransferidoEvento(contaOrigem, valor, TipoEvento.TRANSFERENCIA_ENTRADA));
+        historico.add(new ValorTransferenciaEntradaEvento(contaOrigem, valor));
     }
 
     public String getNumeroConta() {

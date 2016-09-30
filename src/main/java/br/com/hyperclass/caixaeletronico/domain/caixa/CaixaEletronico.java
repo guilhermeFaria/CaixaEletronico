@@ -7,6 +7,7 @@
 
 package br.com.hyperclass.caixaeletronico.domain.caixa;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,8 +33,8 @@ public class CaixaEletronico {
     
     public CaixaEletronico(final Map<ValorNota, List<Nota>> notas, final List<ContaCorrente> correntistas) {
         carregarContasClientes(correntistas);
-        notas.clear();
-        notas.putAll(notas);
+        this.notas.clear();
+        this.notas.putAll(notas);
     }
 
     public List<EventoTransacional> extrato(final String conta) throws CaixaEletronicoException{
@@ -77,7 +78,7 @@ public class CaixaEletronico {
      * @return
      */
     public Map<ValorNota, List<Nota>> notasDisponiveis() {
-        return new HashMap<>(notas);
+        return new EnumMap<>(notas);
     }
 
     private void removerNotas(final double valorSacar) {
@@ -93,8 +94,8 @@ public class CaixaEletronico {
     }
 
     /**
-     * Algoritmo que verica se hï¿½ notas disponï¿½veis no caixa eletrï¿½nico
-     * recebendo um valor a ser removido como parï¿½metro. Auxilia mï¿½todo
+     * Algoritmo que verica se há notas disponiveis no caixa eletronico
+     * recebendo um valor a ser removido como parametro. Auxilia metodo
      * sacar.
      *
      * @param valor
@@ -102,7 +103,7 @@ public class CaixaEletronico {
      */
     private boolean verificarNotas(final double valor) {
         double somaNotas = new Double("0");
-        final Map<ValorNota, List<Nota>> notasMapCopia = new HashMap<>(notas);
+        final Map<ValorNota, List<Nota>> notasMapCopia = new EnumMap<>(notas);
         for (final Entry<ValorNota, List<Nota>> entry : notasMapCopia.entrySet()) {
             final ValorNota nota = entry.getKey();
             final LinkedList<Nota> lista = (LinkedList<Nota>) entry.getValue();

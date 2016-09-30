@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ValorWrapper;
 /**
+ * A classe <code>ValorWrapperSerializer</code> é responsavel 
+ * por efetuar a serialização do objeto Json.
  * 
  * @author Guilherme Faria
  *

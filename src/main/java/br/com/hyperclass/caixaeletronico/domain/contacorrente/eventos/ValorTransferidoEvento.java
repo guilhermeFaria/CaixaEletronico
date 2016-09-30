@@ -16,17 +16,24 @@ import br.com.hyperclass.caixaeletronico.domain.contacorrente.ContaCorrente;
  * @author Roberto Perillo
  * @version 1.0 23 de set de 2016
  */
-public class ValorTransferidoEvento extends EventoTransacional {
+public abstract class ValorTransferidoEvento extends EventoTransacional {
 
     private static final long serialVersionUID = 1L;
 
     public ValorTransferidoEvento(final ContaCorrente conta, final double valor, final TipoEvento tipo) {
-        super(new ContextoTransferencia(conta, valor, tipo));
+        super(new ContextoTransferencia(conta, valor, tipo));        
     }
 
     @Override
-    public double atualizarSaldo(final double saldo) {
-        return saldo + getValor();
+    public abstract double atualizarSaldo(final double saldo);
+    
+    
+    public String getNumeroConta() {
+    	return getContextoTransferencia().getNumeroConta();
     }
     
+    
+    private ContextoTransferencia getContextoTransferencia() {
+       	return (ContextoTransferencia) super.getSource();
+    }
 }

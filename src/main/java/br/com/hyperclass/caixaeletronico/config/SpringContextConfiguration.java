@@ -2,6 +2,7 @@ package br.com.hyperclass.caixaeletronico.config;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import br.com.hyperclass.caixaeletronico.domain.contacorrente.ContaCorrente;
  * 
  * @author Guilherme Faria
  *
- * @version 1.0.0
+ * @version 1.0.0 26/09/2016
  * 
  */
 @Configuration
@@ -42,12 +43,17 @@ public class SpringContextConfiguration {
 	private Map<ValorNota, List<Nota>> carregarNotas() {
 		final Map<ValorNota, List<Nota>> map = new EnumMap<>(ValorNota.class);
 		map.put(ValorNota.UM, carregarListaNotas(3, ValorNota.UM));
+		map.put(ValorNota.DOIS, carregarListaNotas(5, ValorNota.DOIS));
+		map.put(ValorNota.DEZ, carregarListaNotas(2, ValorNota.DEZ));
+		map.put(ValorNota.VINTE, carregarListaNotas(4, ValorNota.VINTE));
+		map.put(ValorNota.CINQUENTA, carregarListaNotas(5, ValorNota.CINQUENTA));
+		map.put(ValorNota.CEM, carregarListaNotas(10, ValorNota.CEM));
 		return map;
 		
 	}
 	
 	private List<Nota> carregarListaNotas(final int quantidade, final ValorNota valorNota) {
-		final List<Nota> list = new ArrayList<>();
+		final List<Nota> list = new LinkedList<>();
 		for (int i = 0; i < quantidade; i++) {
 			list.add(new Nota(valorNota));
 		}

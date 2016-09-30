@@ -8,8 +8,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
 /**
- * A classe <code>DefaultSerializer<code> é reponsavel por serializar
- * os valores padrões<data><operacao><valor>
+ * A classe <code>DefaultSerializer<code> é responsavel por efetuar a serialização 
+ * dos eventos transacionais. 
  * 
  * @author Guilherme Faria
  *

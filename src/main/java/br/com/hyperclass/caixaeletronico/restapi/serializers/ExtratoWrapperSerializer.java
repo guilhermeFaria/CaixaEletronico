@@ -15,6 +15,8 @@ import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.TipoEvento
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ExtratoWrapper;
 
 /**
+ * A classe <code>ExtratoWrapperSerializer</code> efetua a serialização dos eventos ocorrido
+ * em uma conta corrente retornando todos em um objeto Json
  * 
  * @author Guilherme Faria
  *
