@@ -6,7 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import br.com.hyperclass.caixaeletronico.restapi.deserializers.ValorWrapperDeserializer;
 import br.com.hyperclass.caixaeletronico.restapi.serializers.ValorWrapperSerializer;
 /**
- * 
+ * A classe <code>ValorWrapper</code> é responsavel por contruir um modelo
+ * da serialização de objeto Json.
  * @author Guilherme Faria
  *
  * @version 1.0.0 26/09/2016

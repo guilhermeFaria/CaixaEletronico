@@ -3,7 +3,6 @@ package br.com.hyperclass.caixaeletronico.restapi.serializers;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
@@ -14,13 +13,13 @@ import br.com.hyperclass.caixaeletronico.restapi.wrappers.ValorWrapper;
  * 
  * @author Guilherme Faria
  *
- * @version 1.0.0
+ * @version 1.0.0 25/09/2016
  */
-public class ValorWrapperSerializer extends JsonSerializer<ValorWrapper>{
+public class ValorWrapperSerializer extends JsonSerializer<ValorWrapper> {
 
 	@Override
 	public void serialize(final ValorWrapper valorWrapper, final JsonGenerator generator, final SerializerProvider serializerProvider)
-			throws IOException, JsonProcessingException {
+			throws IOException {
 		generator.writeStartObject();
 		generator.writeNumberField("valor", valorWrapper.value());
 		generator.writeEndObject();	

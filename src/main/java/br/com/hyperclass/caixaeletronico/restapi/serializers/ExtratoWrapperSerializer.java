@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.TipoEvento;
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ExtratoWrapper;
+import br.com.hyperclass.caixaeletronico.util.BeanRetriever;
 
 /**
  * A classe <code>ExtratoWrapperSerializer</code> efetua a serialização dos eventos ocorrido
@@ -26,7 +27,13 @@ import br.com.hyperclass.caixaeletronico.restapi.wrappers.ExtratoWrapper;
 public class ExtratoWrapperSerializer extends JsonSerializer<ExtratoWrapper> {
 
 	private final Map<TipoEvento, Serializer> eventosSerializer = new EnumMap<>(TipoEvento.class);
-
+	
+	@SuppressWarnings("unchecked")
+	public ExtratoWrapperSerializer() {
+		super();
+		eventosSerializer.putAll(BeanRetriever.getBean("eventosSerializer", Map.class));
+	}
+	
 	@Override
 	public void serialize(final ExtratoWrapper extratoWrapper, final JsonGenerator generator,
 			final SerializerProvider provider) throws IOException {
@@ -38,10 +45,5 @@ public class ExtratoWrapperSerializer extends JsonSerializer<ExtratoWrapper> {
 		}
 		generator.writeEndArray();
 
-	}
-
-	@Resource
-	public void setEventosSerializer(final Map<TipoEvento, Serializer> eventosSerializer) {
-		this.eventosSerializer.putAll(eventosSerializer);
 	}
 }
