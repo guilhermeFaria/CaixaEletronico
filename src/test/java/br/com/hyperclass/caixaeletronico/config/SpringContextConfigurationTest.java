@@ -33,8 +33,9 @@ public class SpringContextConfigurationTest {
 	}
 	
 	private List<ContaCorrente> carregarContas() {
-		List<ContaCorrente> list = new ArrayList<>(1);
+		List<ContaCorrente> list = new ArrayList<>(2);
 		list.add(new ContaCorrente("54125-9", 0.00));
+		list.add(new ContaCorrente("25214-8", 0.00));
 		return list;
 	}
 	

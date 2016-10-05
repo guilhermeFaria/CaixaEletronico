@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

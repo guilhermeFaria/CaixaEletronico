@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,7 +47,7 @@ public class CaixaController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/{conta}/deposito")
+	@RequestMapping(value="/{conta}/deposito", method = RequestMethod.POST)
 	public ResponseEntity<ValorWrapper> deposito(@PathVariable("conta") final String conta, @RequestBody final ValorWrapper valorWrapper) throws CaixaEletronicoException {
 		caixa.depositar(conta, valorWrapper.value());
 		return new ResponseEntity<>(HttpStatus.OK);
