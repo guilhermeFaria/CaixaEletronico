@@ -2,9 +2,11 @@ package br.com.hyperclass.caixaeletronico.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +24,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.hyperclass.caixaeletronico.config.SpringContextConfigurationTest;
@@ -29,10 +32,11 @@ import br.com.hyperclass.caixaeletronico.config.WebConfiguration;
 import br.com.hyperclass.caixaeletronico.domain.caixa.CaixaEletronicoException;
 import br.com.hyperclass.caixaeletronico.domain.caixa.CaixaEletronicoTest;
 import br.com.hyperclass.caixaeletronico.domain.contacorrente.ContaCorrente;
+import br.com.hyperclass.caixaeletronico.domain.contacorrente.eventos.EventoTransacional;
 import br.com.hyperclass.caixaeletronico.restapi.CaixaController;
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ExtratoWrapper;
 import br.com.hyperclass.caixaeletronico.restapi.wrappers.ValorWrapper;
-import br.com.hyperclass.caixaeletronico.util.CaixaEletronicoComparator;
+import br.com.hyperclass.caixaeletronico.util.DefaultComparatorCaixaEletronico;
 
 /**
  * 
@@ -54,23 +58,21 @@ public class ApplicationTest {
 	private CaixaEletronicoTest caixaTest;
 	
 	@Before
-	public void setupApplication() {
+	private void setupApplication() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 	}
 
 	@Test
 	public void extratoTest() throws Exception {
-		final ObjectMapper objectMapper = new ObjectMapper();
 		final ContaCorrente conta = caixaTest.getContaCorrente("54125-9");
 		conta.creditar(100);
 		conta.sacar(50);
 		conta.creditar(20);
-		final String extrato = objectMapper.writeValueAsString(new ExtratoWrapper(conta.extrato()));
+		final String extratoExpected = convertJsonToString(criaEventos());
 		final MvcResult result = mockMvc.perform(get("/54125-9/extrato")).andReturn();
 		final String resultHttp = result.getResponse().getContentAsString();
 		
-		JSONAssert.assertEquals(extrato, resultHttp, new CaixaEletronicoComparator(mode));
-		
+		JSONAssert.assertEquals(extratoExpected, resultHttp, new DefaultComparatorCaixaEletronico("date").compareValues("date", extratoExpected, resultHttp, null));
 	}
 	
 	@Test
@@ -127,6 +129,24 @@ public class ApplicationTest {
 		final ObjectMapper objectMapper = new ObjectMapper();
 		final ContaCorrente conta = caixaTest.getContaCorrente("54125-9");
 		
+	}
+	
+	private ExtratoWrapper criaEventos() throws CaixaEletronicoException {
+		final List<EventoTransacional> eventosLista = new ArrayList<>();
+		ContaCorrente conta = caixaTest.getContaCorrente("54125-9");
+		conta.creditar(100.0);
+		conta.sacar(50.0);
+		conta.creditar(70.0);
+		eventosLista.addAll(conta.extrato());
+		
+		return new ExtratoWrapper(eventosLista);
+		
+	}
+	
+	private String convertJsonToString(Object json) throws JsonProcessingException {
+		final ObjectMapper objectMapper = new ObjectMapper();
+		final String value = objectMapper.writeValueAsString(json);
+		return value;
 	}
 	
 }
