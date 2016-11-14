@@ -23,12 +23,12 @@ import br.com.hyperclass.caixaeletronico.util.BeanRetriever;
  * @version 1.0.0 28/09/2016
  */
 
-public class ExtratoWrapperSerializer extends JsonSerializer<ExtratoWrapper> {
+public class ExtratoSerializer extends JsonSerializer<ExtratoWrapper> {
 
 	private final Map<TipoEvento, Serializer> eventosSerializer = new EnumMap<>(TipoEvento.class);
 	
 	@SuppressWarnings("unchecked")
-	public ExtratoWrapperSerializer() {
+	public ExtratoSerializer() {
 		super();
 		eventosSerializer.putAll(BeanRetriever.getBean("eventosSerializer", Map.class));
 	}

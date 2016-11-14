@@ -18,7 +18,7 @@ import br.com.hyperclass.caixaeletronico.restapi.wrappers.ValorWrapper;
  *
  * @version
  */
-public class ValorWrapperDeserializer extends JsonDeserializer<ValorWrapper>{
+public class ValorDeserializer extends JsonDeserializer<ValorWrapper>{
 
 	@Override
 	public ValorWrapper deserialize(final JsonParser jsonParser, final DeserializationContext deserializationContext)

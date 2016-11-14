@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import br.com.hyperclass.caixaeletronico.domain.caixa.Nota;
 import br.com.hyperclass.caixaeletronico.domain.caixa.ValorNota;
-import br.com.hyperclass.caixaeletronico.restapi.serializers.NotasDisponiveisWrapperSerializer;
+import br.com.hyperclass.caixaeletronico.restapi.serializers.NotasDisponiveisSerializer;
 /**
  *A classe <code>NotasDisponiveisWrapper</code> é responsavel por contruir um modelo
  *da serialização de objeto Json relacionada as notas disponiveis do caixa
@@ -17,7 +17,7 @@ import br.com.hyperclass.caixaeletronico.restapi.serializers.NotasDisponiveisWra
  *
  * @version 1.0.0 30/09/2016
  */
-@JsonSerialize(using=NotasDisponiveisWrapperSerializer.class)
+@JsonSerialize(using=NotasDisponiveisSerializer.class)
 public class NotasDisponiveisWrapper {
 	
 	private Map<ValorNota, List<Nota>> notas;

@@ -15,7 +15,7 @@ import br.com.hyperclass.caixaeletronico.restapi.wrappers.ValorWrapper;
  *
  * @version 1.0.0 25/09/2016
  */
-public class ValorWrapperSerializer extends JsonSerializer<ValorWrapper> {
+public class ValorSerializer extends JsonSerializer<ValorWrapper> {
 
 	@Override
 	public void serialize(final ValorWrapper valorWrapper, final JsonGenerator generator, final SerializerProvider serializerProvider)

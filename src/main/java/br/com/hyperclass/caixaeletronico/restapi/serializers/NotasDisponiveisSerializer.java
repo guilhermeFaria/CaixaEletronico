@@ -18,7 +18,7 @@ import br.com.hyperclass.caixaeletronico.restapi.wrappers.NotasDisponiveisWrappe
  *
  * @version 1.0.0 30/09/2016
  */
-public class NotasDisponiveisWrapperSerializer extends JsonSerializer<NotasDisponiveisWrapper> {
+public class NotasDisponiveisSerializer extends JsonSerializer<NotasDisponiveisWrapper> {
 
 	@Override
 	public void serialize(NotasDisponiveisWrapper notasDisponiveisWrapper, JsonGenerator generator, SerializerProvider serializerProvider)
