@@ -20,7 +20,7 @@ public class ValorWrapper {
 	public ValorWrapper (final double value) {
 		this.value = value;
 	}
-	
+
 	public double value() {
 		return value;
 	}
