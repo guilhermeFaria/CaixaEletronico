@@ -1,5 +1,6 @@
 package br.com.hyperclass.caixaeletronico.restapi.wrappers;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +24,9 @@ public class NotasDisponiveisWrapper {
 	
 	public NotasDisponiveisWrapper(Map<ValorNota, List<Nota>>notas) {
 		this.notas = notas;
-		
 	}
 	
-	
-	
+	public Map<ValorNota, List<Nota>> getNotas() {
+		return Collections.unmodifiableMap(notas);
+	}	
 }
