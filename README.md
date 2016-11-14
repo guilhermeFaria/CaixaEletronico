@@ -1,6 +1,4 @@
 # CaixaEletronico
-Elaboração de um sistema de caixa eletronico
-
 Projeto de desenvolvimento de um sistema de caixa eletronico.
 
 Projeto em desenvolvimento visando a aplicação de boas praticas de programação 
